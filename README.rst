@@ -1,7 +1,6 @@
 pagination
 ===========================
 
-This is a Django app build by Wlab-uy. 
 
 
 Quick start
