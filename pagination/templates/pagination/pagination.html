@@ -1,0 +1,59 @@
+{% load i18n static pagination %}
+
+{% block pagination_style %}
+    <link rel="stylesheet" href="{% static 'pagination/css/style.css' %}">
+{% endblock %}
+
+<div class="row">
+    <div class="col-sm-4">
+    </div>
+    <div class="col-sm-4">
+        <div class="paginationCenter">
+	        <ul class="pagination">
+	            <li class="page-item">
+	                {% if page.has_previous %}
+	                <a class="page-link" href="?{% url_replace request 'page' page.previous_page_number %}" aria-label="Previous">
+	                    <span aria-hidden="true"><i class="icon icon-chevron-left"> < </i></span>
+	                </a>
+	                {% endif %}
+	            </li>
+	
+	            {% for page_num in begin %}
+	                <li class="page-item {% ifequal page.number page_num %}active{% endifequal %}">
+	                    <a class="page-link" href="?{% url_replace request 'page' page_num %}">{{ page_num }}</a>
+	                </li>
+	            {% endfor %}
+	
+	            {% if middle %}
+	                <li>
+	                    <a>...</a>
+	                </li>
+	                {% for page_num in middle %}
+	                    <li class="page-item {% ifequal page.number page_num %}active{% endifequal %}">
+	                       <a class="page-link" href="?{% url_replace request 'page' page_num %}">{{ page_num }}</a>
+	                    </li>
+	                {% endfor %}
+	            {% endif %}
+	
+	            {% if end %} 
+	                <li>
+	                <a>...</a>
+	                </li>
+	                {% for page_num in end %}
+	                    <li class="page-item {% ifequal page.number page_num %}active{% endifequal %}">
+	                    <a class="page-link" href="?{% url_replace request 'page' page_num %}">{{ page_num }}</a>
+	                    </li>
+	                {% endfor %}
+	            {% endif %} 
+	
+	            <li class="page-item">
+	            {% if page.has_next %}
+	              <a class="page-link" href="?{% url_replace request 'page' page.next_page_number %}" aria-label="Next">
+	                <span aria-hidden="true"> > <i class="icon icon-chevron-right"></i></span>
+	              </a>
+	            {% endif %}
+	            </li>
+	        </ul>
+        </div>
+    </div>
+</div>
