@@ -1,0 +1,3 @@
+include *.IN
+recursive-include pagination *.css
+recursive-include pagination *.html
